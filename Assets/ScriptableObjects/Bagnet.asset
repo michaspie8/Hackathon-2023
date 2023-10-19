@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc9e6260c800374a94d896b435fad7f, type: 3}
+  m_Name: Bagnet
+  m_EditorClassIdentifier: 
+  name: Bagnet
+  icon: {fileID: -890535327, guid: a20c4b36d8ab3754f84d3390bb0e92e4, type: 3}
+  showInInventory: 1
+  description: "Taktyczn n\xF3z przymocowany do karabinu u\u017Cywany w dzisiejszych
+    czasach"
+  slotIndex: -1
+  damageBaseValue: 1
+  damage:
+    baseValue: 0
+  prefab: {fileID: 8442607040294751873, guid: 17b5f31a1fcba0443a340d423a413ec6, type: 3}
+  parent: 0
+  type: 0
+  dashForce: 3
+  isAtacking: 0

@@ -24,7 +24,14 @@ public class InventorySlot : MonoBehaviour
         icon.enabled = true;
         //removeButton.interactable = true;
     }
-
+    private void Start()
+    {
+        if(GetComponentInParent<ToggleGroup>() != null)
+        {
+            GetComponentInChildren<Toggle>().group = GetComponentInParent<ToggleGroup>();
+        }
+      //  GetComponentInChildren<Toggle>().
+    }
     // Clear the slot
     public void ClearSlot()
     {

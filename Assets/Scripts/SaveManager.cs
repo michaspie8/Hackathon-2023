@@ -5,6 +5,7 @@ using UnityEngine;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using Unity.VisualScripting;
 
 [Serializable]
 public class SaveData
@@ -13,10 +14,12 @@ public class SaveData
     public string PlayerName = "PLAYER";
     public int PlayerLevel = 0;
     public int PlayerCircle = 0; // A number of the circle the player is in. 1 Circle =  levels
-
+    public DateTime date = DateTime.MinValue;
 }
 public class SaveManager
 {
+
+
     public static SaveData saveData = new();
     public string dirPath;
     public string fileName = "save";
@@ -28,6 +31,7 @@ public class SaveManager
     }
     public SaveData LoadGame(int slot)
     {
+        
         string fullPath = Path.Combine(dirPath, fileName + "-" + slot + fileExt);
 
         SaveData loadedData = null;
@@ -64,7 +68,7 @@ public class SaveManager
     }
     public void SaveGame(int slot)
     {
-        saveData.PlayerName = GameManager.instance.PlayerName;
+        saveData.PlayerName = AbsoluteManager.instance.PlayerName;
         WriteToFile(saveData, slot);
 
     }

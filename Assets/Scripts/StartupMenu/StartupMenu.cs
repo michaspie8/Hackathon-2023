@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class StartupMenu : MonoBehaviour
 {
@@ -15,14 +16,18 @@ public class StartupMenu : MonoBehaviour
 
     private void Start()
     {
-        Menus = new GameObject[] { MainMenu, OptionsMenu, AuthorsMenu, SaveMenu };
+        Menus = new GameObject[] { MainMenu, OptionsMenu, AuthorsMenu, SaveMenu, SlotSelectMenu };
         GoToMenu(MainMenu);
 
     }
     public void OnStartButton(int index)
     {
-        GameManager.instance.saveManager.LoadGame(index);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (index > 0)
+        {
+            AbsoluteManager.instance.saveManager.LoadGame(index);
+            
+            SceneManager.LoadScene("MainDungeon");
+        }
     }
     public void GoToMenu(GameObject menuObject)
     {
@@ -34,8 +39,26 @@ public class StartupMenu : MonoBehaviour
                 {
                     if (slot.name == "Slot" + i)
                     {
-                       var data = GameManager.instance.saveManager.LoadGame(i);
-                       //Display data about save slot
+                        var data = AbsoluteManager.instance.saveManager.LoadGame(i);
+                        //Display data about save slot
+                        if (data != null)
+                        {
+                            foreach (var obj in slot.GetComponentsInParent<TMP_Text>())
+                            {
+                                if (obj.name == "PlayerName")
+                                {
+                                    obj.text = data.PlayerName;
+                                }
+                                else if (obj.name == "Info")
+                                {
+                                    obj.text = data.PlayerLevel + "  " + data.date;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            slot.GetComponentInChildren<TMP_Text>().text = "Empty";
+                        }
                     }
 
                 }

@@ -38,7 +38,6 @@ public class WeaponsManager : MonoBehaviour
         switch (type)
         {
             case WeaponType.melee:
-                anim.SetBool("MeleeWeaponEquipped", true);
                 break;
             case WeaponType.ranged:
                 break;

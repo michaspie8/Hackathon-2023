@@ -12,15 +12,13 @@ public class Weapon : AssignableItem
     public WeaponParent parent;
     public WeaponType type;
 
-    
     public virtual void Equip()
     {
-        if(damage == null) damage = new(damageBaseValue);
+        if (damage == null) damage = new(damageBaseValue);
 
         WeaponsManager.instance.Equip(this, type);
-
     }
-    
+
     public override void Unequip()
     {
         WeaponsManager.instance.Unequip(slotIndex);
@@ -30,12 +28,11 @@ public class Weapon : AssignableItem
     {
         Equip();
         base.UseInInventory();
-        
+
     }
     public override void UseInGame()
     {
         base.UseInGame();
-
     }
 }
 

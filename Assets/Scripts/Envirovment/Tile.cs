@@ -16,6 +16,7 @@ public class Tile : MonoBehaviour
     public bool isFree = false; //If the tile is free to place objects on (not a wall)
     public bool secoundPhaseGeneration = false; //If wall on tile is placed in secound phase of generation
     public List<OnTileObj> onTileObjects; //Objects placed on tile
+    public List<GameObject> ObjectsSpawnedOnTile = new List<GameObject>(); //Objects spawned on tile
 
     /*public void AddOnTileObject(OnTileObj obj)
     {

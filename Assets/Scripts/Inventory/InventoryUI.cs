@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using TMPro;
 
 /* This object manages the inventory UI. */
 
@@ -10,7 +11,6 @@ public class InventoryUI : MonoBehaviour
 
     public GameObject inventoryUI;  // The entire UI
     public Transform itemsParent;   // The parent object of all the items
-    public bool isButtonDown;
 
     Inventory inventory;    // Our current inventory
     public InventorySlot[] slots;
@@ -29,9 +29,12 @@ public class InventoryUI : MonoBehaviour
     public ToggleGroup inventoryToggleGroup;
     public ToggleGroup AssignableItemsToggleGroup;
 
+    public GameObject ItemDesc;
+    TextMeshProUGUI textItemDesc;
+
     private void Awake()
     {
-        
+
     }
     /*void setTogleGroup(ToggleGroup group)
     {
@@ -81,33 +84,33 @@ public class InventoryUI : MonoBehaviour
         allAssignableItemsScrObj = ExtensionMethods.GetAllInstances<AssignableItem>();
         inventory = Inventory.instance;
         inventory.onItemChangedCallback += UpdateUI;
+        textItemDesc = ItemDesc.GetComponent<TextMeshProUGUI>();
     }
+    public void OnInventoryOpen()
+    {
+        if (inventoryUI.activeSelf)
+        {
+            Debug.Log("Closeing Inventory");
+            GameManager.instance.ResumeGame();
+            GameManager.instance.EnablePlayerControls();
+            GameManager.instance.DisableUIControls();
 
+        }
+        else
+        {
+            Debug.Log("Opening Inventory");
+            GameManager.instance.EnableUIControls();
+            GameManager.instance.DisablePlayerControls();
+            GameManager.instance.PauseGame();
+        }
+
+        inventoryUI.SetActive(!inventoryUI.activeSelf);
+        UpdateUI();
+    }
     // Check to see if we should open/close the inventory
     void Update()
-    {
-        if (isButtonDown)
-        {
-            if (inventoryUI.activeSelf)
-            {
-                Debug.Log("Closeing Inventory");
-                GameManager.instance.ResumeGame();
-                GameManager.instance.EnablePlayerControls();
-                GameManager.instance.DisableUIControls();
+    { 
 
-            }
-            else
-            {
-                Debug.Log("Opening Inventory");
-                GameManager.instance.EnableUIControls();
-                GameManager.instance.DisablePlayerControls();
-                GameManager.instance.PauseGame();
-            }
-
-            inventoryUI.SetActive(!inventoryUI.activeSelf);
-            isButtonDown = false;
-            UpdateUI();
-        }
     }
 
     // Update the inventory UI by:
@@ -121,7 +124,16 @@ public class InventoryUI : MonoBehaviour
         AssignableItemsSlots = AssignableItemsParent.GetComponentsInChildren<InventorySlot>();
         updateTypeOfItem(slots, inventory.items);
         updateTypeOfItem(EquipmentSlots, inventory.equipmentItems);
+        foreach (InventorySlot slot in slots)
+        {
+            if (slot.GetComponentInChildren<Toggle>() != null && slot.GetComponentInChildren<Toggle>().isOn)
+            {
+                //slot.item.description;
+                textItemDesc.text = slot.item.description;
+                Debug.Log(slot.item.description);
 
+            }
+        }
         for (int i = 0; i < AssignableItemsSlots.Length; i++)
         {
 
@@ -150,9 +162,6 @@ public class InventoryUI : MonoBehaviour
             }
         }
 
-        {
-
-        }
     }
 
 }
