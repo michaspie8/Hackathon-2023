@@ -24,7 +24,7 @@ public class InventoryUI : MonoBehaviour
     public InventorySlot[] AssignableItemsSlots;
     public List<Item> AssignableItemsList;
 
-    public AssignableItem[] allAssignableItemsScrObj;
+    //public AssignableItem[] allAssignableItemsScrObj;
 
     public ToggleGroup inventoryToggleGroup;
     public ToggleGroup AssignableItemsToggleGroup;
@@ -81,7 +81,7 @@ public class InventoryUI : MonoBehaviour
 
     void Start()
     {
-        allAssignableItemsScrObj = ExtensionMethods.GetAllInstances<AssignableItem>();
+        //allAssignableItemsScrObj = ExtensionMethods.GetAllInstances<AssignableItem>();
         inventory = Inventory.instance;
         inventory.onItemChangedCallback += UpdateUI;
         textItemDesc = ItemDesc.GetComponent<TextMeshProUGUI>();

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
@@ -15,6 +16,7 @@ public class MeleeWeapon : Weapon
         WeaponsManager.instance.actualWeaponObjects[slotIndex].GetComponent<Collider>().enabled = false;
 
         //anim.ResetTrigger("MeleeWeaponSlash");
+        
     }
     public override void Unequip()
     {

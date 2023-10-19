@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18387063, g: 0.22901739, b: 0.30311272, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -717,7 +717,6 @@ MonoBehaviour:
   AssignableItemsParent: {fileID: 117324981}
   AssignableItemsSlots: []
   AssignableItemsList: []
-  allAssignableItemsScrObj: []
   inventoryToggleGroup: {fileID: 1917435879}
   AssignableItemsToggleGroup: {fileID: 117324982}
   ItemDesc: {fileID: 1949038913}
@@ -1076,7 +1075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  health: 0
+  health: 50
   cam: {fileID: 1875865610}
   followCamera: {fileID: 1616434482}
   lockCamera: {fileID: 729954626}
@@ -3183,7 +3182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1504096677
 MonoBehaviour:
   m_ObjectHideFlags: 0

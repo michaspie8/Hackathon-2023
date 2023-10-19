@@ -35,16 +35,23 @@ public class EnemyController : MonoBehaviour
     IEnumerator fff()
     {
         isAttacking = true;
-        yield return new WaitForSeconds(1);
         PlayerController _playerController = player.GetComponent<PlayerController>();
         _playerController.DecreaseHealth(enemystats.damage);
         Debug.Log(_playerController.health);
+        yield return new WaitForSeconds(1);
         isAttacking = false;
 
     }
     void Attack()
     {
-        StartCoroutine(fff());
-
+        if (isAttacking == false)
+            StartCoroutine(fff());
+    }
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.collider.GetComponentInParent<PlayerController>() != null || other.collider.isTrigger)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

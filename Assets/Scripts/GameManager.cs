@@ -176,11 +176,12 @@ public class GameManager : MonoBehaviour
         GameManager.instance.DisablePlayerControls();
         GameManager.instance.DisableUIControls();
         StartCoroutine(EndCo());
+        
     }
     public IEnumerator EndCo()
     {
-        yield return new WaitForSeconds(5);
-        Application.Quit();
+        yield return new WaitForSecondsRealtime(5);
+        Application.Quit(0);
     }
     public static T CopyScriptableObject<T>(T t) where T : ScriptableObject
     {
